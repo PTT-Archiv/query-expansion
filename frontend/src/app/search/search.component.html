@@ -1,0 +1,61 @@
+<form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+  <input name="search" type="search" class="search" placeholder="Suche" formControlName="search">
+  <label>
+    <input name="translatedLocalityNames" type="checkbox" formControlName="translatedLocalityNames">
+    Ortschaften übersetzen
+  </label>
+  <label>
+    <input name="historicalLocalityNames" type="checkbox" formControlName="historicalLocalityNames">
+    Historische Ortschaftsnamen
+  </label>
+  <input type="submit" value="Suchen">
+</form>
+
+<ng-container *ngIf="loading">
+  loading...
+</ng-container>
+
+<ng-container *ngIf="error">
+  There was an error, please try again.
+</ng-container>
+
+<div class="searchTerms" *ngIf="searchTerms">
+  <ng-container *ngFor="let searchTerm of searchTerms | keyvalue">
+    <app-search-term [searchTerm]="searchTerm.key" [counter]="searchTerm.value"></app-search-term>
+  </ng-container>
+</div>
+
+<ng-container *ngIf="searchEntries">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!-- Entry Column -->
+    <ng-container matColumnDef="entry">
+      <th mat-header-cell *matHeaderCellDef>Entry</th>
+      <td mat-cell *matCellDef="let element">
+        <a href="{{element.entry}}" target="_blank">{{element.entry}}</a></td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name</th>
+        <td mat-cell *matCellDef="let element">
+          <p [highlight]="element.firstMatchingSearchTerm"> {{element.name}} </p></td>
+    </ng-container>
+
+    <!-- Scope & Content Column -->
+    <ng-container matColumnDef="scopeAndContent">
+      <th mat-header-cell *matHeaderCellDef> Scope & Content</th>
+      <td mat-cell *matCellDef="let element"> {{element.scopeAndContent}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20, 50, 100]"
+                 [pageSize]="10"
+                 showFirstLastButtons
+                 aria-label="Select page of periodic elements">
+  </mat-paginator>
+
+</ng-container>

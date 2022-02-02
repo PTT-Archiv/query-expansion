@@ -1,0 +1,10 @@
+is_global = true
+build_property.TargetFramework = net5.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = PTT-Archive_DB-Updater
+build_property.ProjectDir = C:\Users\h1ddensh1t\Source\Repos\ptt-archiv_query_expansion\DB_Console_App\ConsoleApp1\

@@ -1,0 +1,21 @@
+form {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+}
+
+.mat-column-entry, .mat-column-name {
+  padding-right: 24px;
+}
+
+.searchTerms {
+  display: flex;
+  flex-wrap: wrap;
+
+  app-search-term {
+    background-color: gainsboro;
+    padding: 3px 7px;
+    margin: 15px;
+    border-radius: 50px;
+  }
+}
